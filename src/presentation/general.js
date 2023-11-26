@@ -1,20 +1,21 @@
 export function createNavBar() {
     let navBar = document.createElement("navBar");
-    navBar.innerHTML ='<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
+    navBar.innerHTML ='\
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
         <div class="container-fluid">\
             <a class="navbar-brand" href="./homescreen.html">Fitness center</a>\
             <ul class="navbar-nav">\
                 <li class="nav-item">\
-                    <a class="nav-link active" href="./classes.html">Classes</a>\
+                    <a class="nav-link text-light" href="./classes.html">Classes</a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" href="./users.html">Users</a>\
+                    <a class="nav-link text-light" href="./users.html">Users</a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" href="./rooms.html">Rooms</a>\
+                    <a class="nav-link text-light" href="./rooms.html">Rooms</a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" href="./sportTypes.html">Sports</a>\
+                    <a class="nav-link text-light" href="./sportTypes.html">Sports</a>\
                 </li>\
             </ul>\
         </div>\
