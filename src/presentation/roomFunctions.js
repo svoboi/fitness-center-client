@@ -4,7 +4,7 @@ import {
     showError,
     insertDeleteButton,
     insertEditButton,
-    createNavBar
+    createNavBar, submittedFormToObject
 } from "./general.js";
 
 let roomApi = new RoomApi();
@@ -20,10 +20,8 @@ createNavBar();
 
 //https://www.learnwithjason.dev/blog/get-form-values-as-json/
 function handleSubmitRegister(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    let value = Object.fromEntries(data.entries());
-    roomApi.registerRoom(value, registerRoomCallback)
+    const room = submittedFormToObject(event)
+    roomApi.registerRoom(room, registerRoomCallback)
 }
 
 function registerRoomCallback(error, data, response) {
@@ -53,11 +51,9 @@ function prepareUpdateRoom(row, id) {
 }
 
 function handleSubmitUpdate(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    let value = Object.fromEntries(data.entries());
-    let roomId = value["id"];
-    roomApi.putRoom(value, roomId, updateCallback);
+    const room = submittedFormToObject(event)
+    let roomId = room["id"];
+    roomApi.putRoom(room, roomId, updateCallback);
     const updateModalType = document.getElementById('updateModal');
     let updateModal = bootstrap.Modal.getInstance(updateModalType)
     updateModal.hide();

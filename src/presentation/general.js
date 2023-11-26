@@ -61,3 +61,9 @@ export function insertEditButton(row, entity, index, updateFunction) {
     // row.insertCell(index).appendChild(editButton);
     row.cells[index].appendChild(editButton);
 }
+
+export function submittedFormToObject(form) {
+    form.preventDefault();
+    const data = new FormData(form.target);
+    return Object.fromEntries(data.entries());
+}
