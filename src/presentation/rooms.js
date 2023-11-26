@@ -7,7 +7,7 @@ import {
     createNavBar, submittedFormToObject
 } from "./general.js";
 
-createNavBar();
+createNavBar(document);
 
 let roomApi = new RoomApi();
 roomApi.getRooms(getRoomsCallback);
