@@ -7,6 +7,8 @@ import {
     createNavBar, submittedFormToObject
 } from "./general.js";
 
+createNavBar();
+
 let roomApi = new RoomApi();
 roomApi.getRooms(getRoomsCallback);
 
@@ -15,8 +17,6 @@ createForm.addEventListener('submit', handleSubmitRegister);
 
 const updateForm = document.getElementById('updateForm');
 updateForm.addEventListener('submit', handleSubmitUpdate);
-
-createNavBar();
 
 //https://www.learnwithjason.dev/blog/get-form-values-as-json/
 function handleSubmitRegister(event) {
