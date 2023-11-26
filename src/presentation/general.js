@@ -1,5 +1,6 @@
 export function createNavBar() {
-    document.getElementById("navBarPlace").innerHTML = '<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
+    let navBar = document.createElement("navBar");
+    navBar.innerHTML ='<nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
         <div class="container-fluid">\
             <a class="navbar-brand" href="./homescreen.html">Fitness center</a>\
             <ul class="navbar-nav">\
@@ -18,6 +19,7 @@ export function createNavBar() {
             </ul>\
         </div>\
     </nav>';
+    document.body.prepend(navBar);
 }
 
 export function timeOut() {
