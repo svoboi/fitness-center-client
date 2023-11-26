@@ -1,12 +1,10 @@
-// import {RoomApi} from "./ApiClient.js";
-// import RoomApi from "/api/RoomApi.js";
-import {Room, RoomApi} from "../index";
+import {RoomApi} from "../index";
 import {
     timeOut,
     showError,
     insertDeleteButton,
     insertEditButton,
-    debugPrint
+    createNavBar
 } from "./general.js";
 
 let roomApi = new RoomApi();
@@ -18,16 +16,40 @@ createForm.addEventListener('submit', handleSubmitRegister);
 const updateForm = document.getElementById('updateForm');
 updateForm.addEventListener('submit', handleSubmitUpdate);
 
-const createFormButton = document.getElementById('createFormButton');
-createFormButton.addEventListener('click', showCreateForm);
-
+createNavBar();
 
 //https://www.learnwithjason.dev/blog/get-form-values-as-json/
 function handleSubmitRegister(event) {
     event.preventDefault();
     const data = new FormData(event.target);
     let value = Object.fromEntries(data.entries());
-    debugPrint(JSON.stringify(value));
+    roomApi.registerRoom(value, registerRoomCallback)
+}
+
+function registerRoomCallback(error, data, response) {
+    if (response == null) {
+        timeOut();
+    } else if (response.status == 201) {
+        document.getElementById('tableBody').innerHTML = ""
+        roomApi.getRooms(getRoomsCallback);
+        const createFormCollapseType = document.getElementById('createFormCollapse');
+        let createFormCollapse = bootstrap.Collapse.getInstance(createFormCollapseType)
+        createFormCollapse.hide();
+    } else {
+        showError(response)
+    }
+}
+
+function prepareUpdateRoom(row, id) {
+    // trying to make form in line:
+    // row.innerHTML = "";
+    // row.insertCell(0)
+    // row.cells[0].appendChild(document.getElementById('editLine'));
+    // row.cells[0].children.item(0).hidden = false
+    let updateModal = new bootstrap.Modal(document.getElementById('updateModal'), {});
+    document.getElementById("updateModalTitle").textContent = "Update room with id " + id;
+    roomApi.getRoom(id, prefillUpdateModal)
+    updateModal.show();
 }
 
 function handleSubmitUpdate(event) {
@@ -50,18 +72,6 @@ function updateCallback(error, data, response) {
     } else {
         showError(response)
     }
-}
-
-function updateRoom(row, id) {
-    // trying to make form in line:
-    // row.innerHTML = "";
-    // row.insertCell(0)
-    // row.cells[0].appendChild(document.getElementById('editLine'));
-    // row.cells[0].children.item(0).hidden = false
-    let updateModal = new bootstrap.Modal(document.getElementById('updateModal'), {});
-    document.getElementById("updateModalTitle").textContent = "Update room with id " + id;
-    roomApi.getRoom(id, prefillUpdateModal)
-    updateModal.show();
 }
 
 function prefillUpdateModal(error, data, response) {
@@ -105,16 +115,11 @@ function getRoomsCallback(error, data, response) {
             row.insertCell(3).textContent
 
             // insertEditButtonForRoom(row, room, 3)
-            insertEditButton(row, room, 3, updateRoom)
+            insertEditButton(row, room, 3, prepareUpdateRoom)
             // insertDeleteButtonForRoom(row, room, 3)
             insertDeleteButton(row, room, 3, deleteRoom)
         })
     } else {
         showError(response)
     }
-}
-
-function showCreateForm(event) {
-    const form = document.getElementById('createForm');
-    form.hidden = false;
 }
