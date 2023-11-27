@@ -258,7 +258,7 @@ export default class GroupClassApi {
 
     /**
      * Register new class
-     * @param {module:model/GroupClass} groupClass 
+     * @param {any} groupClass
      * @param {module:api/GroupClassApi~registerGroupClassCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GroupClass}
      */
