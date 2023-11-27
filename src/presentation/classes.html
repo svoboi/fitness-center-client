@@ -18,34 +18,34 @@
 
     <div class="collapse" id="createFormCollapse">
         <form id="createForm">
-            <div class="mb-3  my-3">
+            <div class="my-3">
                 <label for="timeFromInCreateForm" class="form-label">Beginning of the class:</label>
-                <input type="text" class="form-control" id="timeFromInCreateForm" placeholder="Start time"
+                <input type="datetime-local" class="form-control" id="timeFromInCreateForm"
                        name="timeFrom">
             </div>
-            <div class="mb-3  my-3">
+            <div class="my-3">
                 <label for="timeToInCreateForm" class="form-label">End of the class:</label>
-                <input type="text" class="form-control" id="timeToInCreateForm" placeholder="End time"
+                <input type="datetime-local" class="form-control" id="timeToInCreateForm"
                        name="timeTo">
             </div>
-            <div class="mb-3  my-3">
+            <div class="my-3">
                 <label for="capacityInCreateForm" class="form-label">Capacity of the class:</label>
                 <input type="number" class="form-control" id="capacityInCreateForm" placeholder="Capacity"
                        name="capacity">
             </div>
-            <div class="mb-3  my-3">
+            <div class="my-3">
                 <label for="roomInCreateForm" class="form-label">ID of the room for the class:</label>
                 <input type="number" class="form-control" id="roomInCreateForm" placeholder="Room id"
                        name="room">
             </div>
-            <div class="mb-3  my-3">
+            <div class="my-3">
                 <label for="sportTypeInCreateForm" class="form-label">ID of the type of sport:</label>
                 <input type="number" class="form-control" id="sportTypeInCreateForm"
                        placeholder="sport" name="sportType">
             </div>
             <div class="mb-4" id="trainersContainerInCreateForm">
-                <h6 class="mb-3">Trainers:</h6>
-                <button type="button" class="btn btn-primary" id="addTrainerButtonInCreateForm"
+                <label for="addTrainerButtonInCreateForm" class="form-label me-2">Trainers:</label>
+                <button type="button" class="btn btn-outline-dark" id="addTrainerButtonInCreateForm"
                         >Add Trainer</button>
             </div>
             <div class="mt-4">
@@ -59,8 +59,11 @@
         <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Name</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
             <th scope="col">Capacity</th>
+            <th scope="col">Room</th>
+            <th scope="col">Sport</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -95,19 +98,34 @@
             <div class="modal-body" id="updateModalBody">
                 <form id="updateForm">
                     <div class="mb-3">
-                        <label for="roomIdInModal" class="form-label">ID:</label>
-                        <input type="number" class="form-control" id="roomIdInModal" placeholder="Id of the room"
+                        <label for="classIdUpdateForm" class="form-label">ID:</label>
+                        <input type="number" class="form-control" id="classIdUpdateForm" placeholder="Id of the class"
                                name="id">
                     </div>
-                    <div class="mb-3  my-3">
-                        <label for="roomNameInModal" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="roomNameInModal" placeholder="Name of the room"
-                               name="name">
+                    <div class="my-3">
+                        <label for="timeFromInUpdateForm" class="form-label">Beginning of the class:</label>
+                        <input type="datetime-local" class="form-control" id="timeFromInUpdateForm"
+                               name="timeFrom">
                     </div>
-                    <div class="mb-3  my-3">
-                        <label for="roomCapacityInModal" class="form-label">Capacity:</label>
-                        <input type="number" class="form-control" id="roomCapacityInModal"
-                               placeholder="Capacity of the room" name="capacity">
+                    <div class="my-3">
+                        <label for="timeToInUpdateForm" class="form-label">End of the class:</label>
+                        <input type="datetime-local" class="form-control" id="timeToInUpdateForm"
+                               name="timeTo">
+                    </div>
+                    <div class="my-3">
+                        <label for="capacityInUpdateForm" class="form-label">Capacity of the class:</label>
+                        <input type="number" class="form-control" id="capacityInUpdateForm" placeholder="Capacity"
+                               name="capacity">
+                    </div>
+                    <div class="my-3">
+                        <label for="roomInUpdateForm" class="form-label">ID of the room for the class:</label>
+                        <input type="number" class="form-control" id="roomInUpdateForm" placeholder="room"
+                               name="room">
+                    </div>
+                    <div class="my-3">
+                        <label for="sportTypeInUpdateForm" class="form-label">ID of the type of sport:</label>
+                        <input type="number" class="form-control" id="sportTypeInUpdateForm"
+                               placeholder="sport" name="sportType">
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>

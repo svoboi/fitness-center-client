@@ -66,8 +66,7 @@ export function insertEditButton(row, entity, index, updateFunction) {
     row.cells[index].appendChild(editButton);
 }
 
-export function submittedFormToObject(form)
-{
+export function submittedFormToObject(form){
     form.preventDefault();
     const data = new FormData(form.target);
     return Object.fromEntries(data.entries());
