@@ -33,7 +33,10 @@ export function timeOut() {
 export function showError(response) {
     let errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
     document.getElementById("errorModalTitle").textContent = "Error " + response.status
-    document.getElementById("errorModalBody").textContent = response.body.message
+    if (response.body.message != null)
+        document.getElementById("errorModalBody").textContent = response.body.message
+    else
+        document.getElementById("errorModalBody").textContent = "Unable to read request";
     errorModal.show();
 }
 

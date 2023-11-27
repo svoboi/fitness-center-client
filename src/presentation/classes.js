@@ -1,9 +1,9 @@
-import {createNavBar, debugPrint, submittedFormToObject} from "./general.js";
-import {GroupClassApi} from "../index.js";
+import {createNavBar, debugPrint, showError, submittedFormToObject, timeOut} from "./general.js";
+import {GroupClass, GroupClassApi} from "../index.js";
 
 createNavBar(document);
 
-// let groupClassApi = new GroupClassApi();
+let groupClassApi = new GroupClassApi();
 // groupClassApi.getGroupClasses(getClassesCallback);
 
 const addTrainerButtonInCreateForm = document.getElementById('addTrainerButtonInCreateForm');
@@ -18,44 +18,72 @@ createForm.addEventListener('submit', handleSubmitRegister);
 window.globalNumberOfTrainerFields = 0;
 
 function addTrainerFieldToCreateForm(event) {
-
     const trainersContainerInCreateForm = document.getElementById('trainersContainerInCreateForm');
     const trainerField = document.createElement('div');
-    // trainerField.classList.add('form-control', 'mt-3');
-    // trainerField.inputMode = "number";
-    // trainerField.placeholder = "Trainer";
     trainerField.innerHTML = '<div class="mb-3  my-3">\
         <input type="number" class="form-control"\
                placeholder="trainer" name="trainer' + globalNumberOfTrainerFields.toString() + '">\
     </div>';
-    // trainerField.name = "trainer" + globalNumberOfTrainerFields.toString();
     globalNumberOfTrainerFields++;
     trainersContainerInCreateForm.append(trainerField);
 }
 
 function handleSubmitRegister(event) {
-    const groupClass = submittedFormToObject(event);
+    event.preventDefault();
+    const groupClass = new FormData(event.target);
+    let groupClassObj = Object.fromEntries(groupClass.entries());
+    let groupClassJSON = JSON.parse(JSON.stringify(groupClassObj));
 
-    let trainersIds = [];
+    if (globalNumberOfTrainerFields > 0) {
+        addTrainersCorrectly(groupClassJSON)
+    }
+
+    addIDToRoom(groupClassJSON);
+    addIDToSportType(groupClassJSON);
+    groupClassApi.registerGroupClass(groupClassJSON, registerClassCallback);
+}
+
+function addTrainersCorrectly (groupClassJSON, trainersIds) {
+    groupClassJSON.trainers = []
     for (let i = 0; i < globalNumberOfTrainerFields; i++) {
-        let trainerId = groupClass["trainer" + i.toString()];
-        trainersIds.push(groupClass["trainer" + i.toString()]);
+        let nameOfAttribute = "trainer" + i.toString()
+        groupClassJSON.trainers.push({"id": groupClassJSON[nameOfAttribute]})
     }
-    let trainers = "";
-    if (!trainersIds.empty) {
-        trainers = trainers.concat('[ { "id":' + trainersIds[0].toString() + '}');
-    }
-    for (let i = 1; i < globalNumberOfTrainerFields; i++) {
-        trainers = trainers.concat(', { "id":' + trainersIds[i].toString() + '}');
-    }
-    if (!trainersIds.empty) {
-        trainers = trainers.concat(' ]')
-    }
-    // debugPrint(trainers);
-    groupClass.add("trainers", trainers)
+}
 
-    // [ { "id": 1 }, { "id": 2 } ]
-    debugPrint(JSON.stringify(groupClass));
-    // groupClassApi.registerGroupClass(groupClass, registerRoomCallback);
-    // globalNumberOfTrainerFields = 0;
+function addIDToRoom (groupClassJSON) {
+    if (groupClassJSON["room"].toString().length > 0) {
+        let roomNo = groupClassJSON["room"].toString();
+        Object.assign(groupClassJSON, {
+            room: {
+                id: roomNo
+            }
+        });
+    }
+}
+
+function addIDToSportType (groupClassJSON) {
+    if (groupClassJSON["sportType"].toString().length > 0) {
+        let sportTypeNo = groupClassJSON["sportType"].toString();
+        Object.assign(groupClassJSON, {
+            sportType: {
+                id: sportTypeNo
+            }
+        });
+    }
+}
+
+function registerClassCallback(error, data, response) {
+    if (response == null) {
+        timeOut();
+    } else if (response.status == 201) {
+        // document.getElementById('tableBody').innerHTML = ""
+        // groupClassApi.getGroupClasses(getClassCallback);
+        const createFormCollapseType = document.getElementById('createFormCollapse');
+        let createFormCollapse = bootstrap.Collapse.getInstance(createFormCollapseType)
+        createFormCollapse.hide();
+        globalNumberOfTrainerFields = 0;
+    } else {
+        showError(response)
+    }
 }
