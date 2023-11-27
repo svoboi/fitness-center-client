@@ -50,7 +50,6 @@ export function insertDeleteButton(row, entity, index, deleteFunction) {
         deleteFunction(entity.id)
     });
     deleteButton.classList.add('btn', 'btn-danger', 'ms-2');
-    // row.insertCell(index).appendChild(deleteButton);
     row.cells[index].appendChild(deleteButton);
 }
 
@@ -61,11 +60,11 @@ export function insertEditButton(row, entity, index, updateFunction) {
         updateFunction(row, entity.id)
     });
     editButton.classList.add('btn', 'btn-secondary');
-    // row.insertCell(index).appendChild(editButton);
     row.cells[index].appendChild(editButton);
 }
 
-export function submittedFormToObject(form) {
+export function submittedFormToObject(form)
+{
     form.preventDefault();
     const data = new FormData(form.target);
     return Object.fromEntries(data.entries());
