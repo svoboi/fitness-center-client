@@ -13,7 +13,7 @@
     <h2 class="mt-5 mb-3">Classes</h2>
     <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#createFormCollapse" role="button"
        aria-expanded="false">
-        Create class
+        Create Class
     </a>
 
     <div class="collapse" id="createFormCollapse">
@@ -21,17 +21,17 @@
             <div class="my-3">
                 <label for="timeFromInCreateForm" class="form-label">Beginning of the class:</label>
                 <input type="datetime-local" class="form-control" id="timeFromInCreateForm"
-                       name="timeFrom">
+                       name="timeFrom" required>
             </div>
             <div class="my-3">
                 <label for="timeToInCreateForm" class="form-label">End of the class:</label>
                 <input type="datetime-local" class="form-control" id="timeToInCreateForm"
-                       name="timeTo">
+                       name="timeTo" required>
             </div>
             <div class="my-3">
                 <label for="capacityInCreateForm" class="form-label">Capacity of the class:</label>
                 <input type="number" class="form-control" id="capacityInCreateForm" placeholder="Capacity"
-                       name="capacity">
+                       name="capacity" required>
             </div>
             <div class="my-3">
                 <label for="roomInCreateForm" class="form-label">ID of the room for the class:</label>
@@ -102,22 +102,22 @@
                     <div class="mb-3">
                         <label for="classIdUpdateForm" class="form-label">ID:</label>
                         <input type="number" class="form-control" id="classIdUpdateForm" placeholder="Id of the class"
-                               name="id">
+                               name="id" required>
                     </div>
                     <div class="my-3">
                         <label for="timeFromInUpdateForm" class="form-label">Beginning of the class:</label>
                         <input type="datetime-local" class="form-control" id="timeFromInUpdateForm"
-                               name="timeFrom">
+                               name="timeFrom" required>
                     </div>
                     <div class="my-3">
                         <label for="timeToInUpdateForm" class="form-label">End of the class:</label>
                         <input type="datetime-local" class="form-control" id="timeToInUpdateForm"
-                               name="timeTo">
+                               name="timeTo" required>
                     </div>
                     <div class="my-3">
                         <label for="capacityInUpdateForm" class="form-label">Capacity of the class:</label>
                         <input type="number" class="form-control" id="capacityInUpdateForm" placeholder="Capacity"
-                               name="capacity">
+                               name="capacity" required>
                     </div>
                     <div class="my-3">
                         <label for="roomInUpdateForm" class="form-label">ID of the room for the class:</label>
@@ -165,12 +165,12 @@
                     <div class="mb-3">
                         <label for="classIdInAddingModal" class="form-label">Id of the class:</label>
                         <input type="number" class="form-control" id="classIdInAddingModal" placeholder="class"
-                               name="id">
+                               name="id" required>
                     </div>
                     <div class="mb-3">
                         <label for="trainerIdInAddingModal" class="form-label">Username of the trainer to add:</label>
                         <input type="text" class="form-control" id="trainerIdInAddingModal" placeholder="username"
-                               name="username">
+                               name="username" required>
                     </div>
                     <div class="mt-4 modal-footer">
                         <button type="submit" class="btn btn-primary">Add Trainer</button>
@@ -193,12 +193,12 @@
                     <div class="mb-3">
                         <label for="classIdInRemovingModal" class="form-label">Id of the class:</label>
                         <input type="number" class="form-control" id="classIdInRemovingModal" placeholder="class"
-                               name="id">
+                               name="id" required>
                     </div>
                     <div class="mb-3">
                         <label for="trainerIdInRemovingModal" class="form-label">Username of the trainer to add:</label>
                         <input type="text" class="form-control" id="trainerIdInRemovingModal" placeholder="username"
-                               name="username">
+                               name="username" required>
                     </div>
                     <div class="mt-4 modal-footer">
                         <button type="submit" class="btn btn-primary">Remove Trainer</button>
