@@ -21,11 +21,7 @@ updateForm.addEventListener('submit', handleSubmitUpdate);
 //https://www.learnwithjason.dev/blog/get-form-values-as-json/
 function handleSubmitRegister(event) {
     const user = submittedFormToObject(event)
-    isUsernameAvailable(user["username"])
-}
-
-function isUsernameAvailable(username) {
-    userApi.usernameAvailability(username, isUsernameAvailableCallback);
+    userApi.usernameAvailability(user["username"], isUsernameAvailableCallback)
 }
 
 function isUsernameAvailableCallback(username, data, response) {
