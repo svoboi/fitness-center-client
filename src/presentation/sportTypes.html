@@ -8,7 +8,85 @@
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js "></script>
     <script type="module" src="sportTypes.js"></script>
 </head>
-<body>
 
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-3">Sports</h2>
+    <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#createFormCollapse" role="button" aria-expanded="false">
+        Create Sport
+    </a>
+
+
+    <div class="collapse" id="createFormCollapse">
+        <form id="createForm">
+            <div class="mb-3  my-3">
+                <label for="sportTypeInCreateForm" class="form-label">Type of sport:</label>
+                <input type="text" class="form-control" id="sportTypeInCreateForm"
+                       placeholder="Sport" name="typeName">
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container mt-3">
+    <table class="table table-editor table-striped" id="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th class="text-center" scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</div>
+<!--Error Modal -->
+<div class="modal" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="errorModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="updateModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="updateModalBody">
+                <form id="updateForm">
+                    <div class="mb-3">
+                        <label for="sportIdInUpdateForm" class="form-label">Id of the sport:</label>
+                        <input type="number" class="form-control" id="sportIdInUpdateForm" placeholder="id"
+                               name="id">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="sportTypeInUpdateForm" class="form-label">Type of sport:</label>
+                        <input type="text" class="form-control" id="sportTypeInUpdateForm"
+                               placeholder="Sport" name="typeName">
+                    </div>
+                    <div class="mt-4 modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
