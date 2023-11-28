@@ -46,7 +46,8 @@
             <div class="mb-4" id="trainersContainerInCreateForm">
                 <label for="addTrainerButtonInCreateForm" class="form-label me-2">Trainers:</label>
                 <button type="button" class="btn btn-outline-dark" id="addTrainerButtonInCreateForm"
-                        >Add Trainer</button>
+                >Add Trainer
+                </button>
             </div>
             <div class="mt-4">
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -64,7 +65,8 @@
             <th scope="col">Capacity</th>
             <th scope="col">Room</th>
             <th scope="col">Sport</th>
-            <th scope="col">Actions</th>
+            <th class="text-center" scope="col">Trainers</th>
+            <th class="text-center" scope="col">Actions</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -127,7 +129,7 @@
                         <input type="number" class="form-control" id="sportTypeInUpdateForm"
                                placeholder="sport" name="sportType">
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
                     </div>
@@ -136,5 +138,77 @@
         </div>
     </div>
 </div>
+<div class="modal" id="trainersForClassModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="trainersForClassModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="trainersForClassModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addTrainersForClassModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddTrainersForClassModalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="addTrainersForClassModalBody">
+                <form id="addTrainerForm">
+                    <div class="mb-3">
+                        <label for="classIdInAddingModal" class="form-label">Id of the class:</label>
+                        <input type="number" class="form-control" id="classIdInAddingModal" placeholder="class"
+                               name="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="trainerIdInAddingModal" class="form-label">Username of the trainer to add:</label>
+                        <input type="text" class="form-control" id="trainerIdInAddingModal" placeholder="username"
+                               name="username">
+                    </div>
+                    <div class="mt-4 modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Trainer</button>
+                        <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="removeTrainersForClassModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeTrainersForClassModalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="removeTrainersForClassModalBody">
+                <form id="removeTrainerForm">
+                    <div class="mb-3">
+                        <label for="classIdInRemovingModal" class="form-label">Id of the class:</label>
+                        <input type="number" class="form-control" id="classIdInRemovingModal" placeholder="class"
+                               name="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="trainerIdInRemovingModal" class="form-label">Username of the trainer to add:</label>
+                        <input type="text" class="form-control" id="trainerIdInRemovingModal" placeholder="username"
+                               name="username">
+                    </div>
+                    <div class="mt-4 modal-footer">
+                        <button type="submit" class="btn btn-primary">Remove Trainer</button>
+                        <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -23,6 +23,13 @@ createForm.addEventListener('submit', handleSubmitRegister);
 const updateForm = document.getElementById('updateForm');
 updateForm.addEventListener('submit', handleSubmitUpdate);
 
+const addTrainerForm = document.getElementById('addTrainerForm');
+addTrainerForm.addEventListener('submit', handleSubmitAddTrainer);
+
+const removeTrainerForm = document.getElementById('removeTrainerForm');
+removeTrainerForm.addEventListener('submit', handleSubmitRemoveTrainer);
+
+
 window.globalNumberOfTrainerFields = 0;
 
 function addTrainerFieldToCreateForm(event) {
@@ -113,16 +120,26 @@ function getClassesCallback(error, data, response) {
             row.insertCell(3).textContent = groupClass.capacity;
             row.insertCell(4).textContent = (groupClass.room == null) ? null : groupClass.room.id
             row.insertCell(5).textContent = (groupClass.sportType == null) ? null : groupClass.sportType.id
-            row.insertCell(6).textContent
-            insertEditButton(row, groupClass, 6, prepareUpdateClass)
-            insertDeleteButton(row, groupClass, 6, deleteClass)
+
+            const centeringContainerTrainers = document.createElement('div');
+            centeringContainerTrainers.classList.add('d-flex', 'justify-content-evenly');
+            insertShowTrainersButton(centeringContainerTrainers, groupClass, getTrainersForClass)
+            insertAddTrainersButton(centeringContainerTrainers, groupClass, addTrainersForClass)
+            insertRemoveTrainersButton(centeringContainerTrainers, groupClass, removeTrainersForClass)
+            row.insertCell(6).appendChild(centeringContainerTrainers)
+
+            const centeringContainerActions = document.createElement('div');
+            centeringContainerActions.classList.add('d-flex', 'justify-content-evenly');
+            insertEditButton(centeringContainerActions, groupClass, prepareUpdateClass)
+            insertDeleteButton(centeringContainerActions, groupClass, deleteClass)
+            row.insertCell(7).appendChild(centeringContainerActions)
         })
     } else {
         showError(response)
     }
 }
 
-function prepareUpdateClass(row, id) {
+function prepareUpdateClass(id) {
     let updateModal = new bootstrap.Modal(document.getElementById('updateModal'), {});
     document.getElementById("updateModalTitle").textContent = "Update class with id " + id;
     groupClassApi.getGroupClass(id, prefillUpdateModal)
@@ -196,6 +213,116 @@ function updateCallback(error, data, response) {
     } else if (response.status == 200) {
         document.getElementById('tableBody').innerHTML = ""
         groupClassApi.getGroupClasses(getClassesCallback);
+    } else {
+        showError(response)
+    }
+}
+
+function insertShowTrainersButton(centeringContainer, entity, getTrainersForClass) {
+    const showTrainersButton = document.createElement('button');
+    showTrainersButton.textContent = 'Show';
+    showTrainersButton.addEventListener('click', () => {
+        getTrainersForClass(entity.id)
+    });
+    showTrainersButton.classList.add('btn', 'btn-secondary');
+    // row.cells[index].appendChild(showTrainersButton);
+    centeringContainer.appendChild(showTrainersButton)
+}
+
+function getTrainersForClass(id) {
+    groupClassApi.getTrainers(parseInt(id, 10), getTrainersForClassCallBack);
+}
+
+function getTrainersForClassCallBack(error, data, response) {
+    if (response == null) {
+        timeOut();
+    } else if (response.status == 200) {
+        let trainersForClassModal = new bootstrap.Modal(document.getElementById('trainersForClassModal'), {});
+        document.getElementById("trainersForClassModalTitle").textContent = "Trainers leading class";
+
+        let trainersForClassModalBody = document.getElementById('trainersForClassModalBody')
+        trainersForClassModalBody.innerHTML = "";
+        data.forEach(name => {
+            const trainerField = document.createElement('p');
+            trainerField.innerHTML = '<p>' + name + '</p>';
+            trainersForClassModalBody.append(trainerField);
+        })
+        trainersForClassModal.show();
+    } else {
+        showError(response)
+    }
+}
+
+function insertAddTrainersButton(centeringContainer, entity, addTrainersForClass) {
+    const addTrainersButton = document.createElement('button');
+    addTrainersButton.textContent = 'Add';
+    addTrainersButton.addEventListener('click', () => {
+        addTrainersForClass(entity.id)
+    });
+    addTrainersButton.classList.add('btn', 'btn-success');
+    // row.cells[index].appendChild(addTrainersButton);
+    centeringContainer.appendChild(addTrainersButton)
+}
+function addTrainersForClass(id) {
+    let addTrainersForClassModal = new bootstrap.Modal(document.getElementById('addTrainersForClassModal'), {});
+    document.getElementById("AddTrainersForClassModalTitle").textContent = "Add trainer to class with id " + id;
+    document.getElementById("classIdInAddingModal").value = id;
+    addTrainersForClassModal.show();
+}
+
+function handleSubmitAddTrainer(event) {
+    let groupClassObj = submittedFormToObject(event);
+    let groupClassJSON = JSON.parse(JSON.stringify(groupClassObj));
+
+    groupClassApi.addTrainer(groupClassJSON, groupClassJSON["id"], handleSubmitAddTrainerCallback);
+    const addTrainersForClassModalType = document.getElementById('addTrainersForClassModal');
+    let addTrainersForClassModal = bootstrap.Modal.getInstance(addTrainersForClassModalType)
+    addTrainersForClassModal.hide();
+}
+
+function handleSubmitAddTrainerCallback(error, data, response) {
+    if (response == null) {
+        timeOut();
+    } else if (response.status == 200) {
+        return;
+    } else {
+        showError(response)
+    }
+}
+
+function insertRemoveTrainersButton(centeringContainer, entity, removeTrainersForClass) {
+    const removeTrainersButton = document.createElement('button');
+    removeTrainersButton.textContent = 'Remove';
+    removeTrainersButton.addEventListener('click', () => {
+        removeTrainersForClass(entity.id)
+    });
+    removeTrainersButton.classList.add('btn', 'btn-danger');
+    // row.cells[index].appendChild(removeTrainersButton);
+    centeringContainer.appendChild(removeTrainersButton)
+}
+
+function removeTrainersForClass(id) {
+    let removeTrainersForClassModal = new bootstrap.Modal(document.getElementById('removeTrainersForClassModal'), {});
+    document.getElementById("removeTrainersForClassModalTitle").textContent = "Remove trainer from class with id " + id;
+    document.getElementById("classIdInRemovingModal").value = id;
+    removeTrainersForClassModal.show();
+}
+
+function handleSubmitRemoveTrainer(event) {
+    let groupClassObj = submittedFormToObject(event);
+    let groupClassJSON = JSON.parse(JSON.stringify(groupClassObj));
+
+    groupClassApi.removeTrainer(groupClassJSON, groupClassJSON["id"], handleSubmitRemoveTrainerCallback);
+    const removeTrainersForClassModalType = document.getElementById('removeTrainersForClassModal');
+    let removeTrainersForClassModal = bootstrap.Modal.getInstance(removeTrainersForClassModalType)
+    removeTrainersForClassModal.hide();
+}
+
+function handleSubmitRemoveTrainerCallback(error, data, response) {
+    if (response == null) {
+        timeOut();
+    } else if (response.status == 204) {
+        return;
     } else {
         showError(response)
     }

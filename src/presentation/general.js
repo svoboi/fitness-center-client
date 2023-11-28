@@ -46,24 +46,24 @@ export function debugPrint(message) {
     errorModal.show();
 }
 
-export function insertDeleteButton(row, entity, index, deleteFunction) {
+export function insertEditButton(centeringContainer, entity, updateFunction) {
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', () => {
+        updateFunction(entity.id)
+    });
+    editButton.classList.add('btn', 'btn-secondary', 'me-2');
+    centeringContainer.appendChild(editButton);
+}
+
+export function insertDeleteButton(centeringContainer, entity, deleteFunction) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', () => {
         deleteFunction(entity.id)
     });
-    deleteButton.classList.add('btn', 'btn-danger', 'ms-2');
-    row.cells[index].appendChild(deleteButton);
-}
-
-export function insertEditButton(row, entity, index, updateFunction) {
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.addEventListener('click', () => {
-        updateFunction(row, entity.id)
-    });
-    editButton.classList.add('btn', 'btn-secondary');
-    row.cells[index].appendChild(editButton);
+    deleteButton.classList.add('btn', 'btn-danger');
+    centeringContainer.appendChild(deleteButton);
 }
 
 export function submittedFormToObject(form){

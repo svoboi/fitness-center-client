@@ -38,12 +38,7 @@ function registerRoomCallback(error, data, response) {
     }
 }
 
-function prepareUpdateRoom(row, id) {
-    // trying to make form in line:
-    // row.innerHTML = "";
-    // row.insertCell(0)
-    // row.cells[0].appendChild(document.getElementById('editLine'));
-    // row.cells[0].children.item(0).hidden = false
+function prepareUpdateRoom(id) {
     let updateModal = new bootstrap.Modal(document.getElementById('updateModal'), {});
     document.getElementById("updateModalTitle").textContent = "Update room with id " + id;
     roomApi.getRoom(id, prefillUpdateModal)
@@ -108,12 +103,12 @@ function getRoomsCallback(error, data, response) {
             row.insertCell(0).textContent = room.id;
             row.insertCell(1).textContent = room.name;
             row.insertCell(2).textContent = room.capacity;
-            row.insertCell(3).textContent
 
-            // insertEditButtonForRoom(row, room, 3)
-            insertEditButton(row, room, 3, prepareUpdateRoom)
-            // insertDeleteButtonForRoom(row, room, 3)
-            insertDeleteButton(row, room, 3, deleteRoom)
+            const centeringContainerActions = document.createElement('div');
+            centeringContainerActions.classList.add('d-flex', 'justify-content-evenly');
+            insertEditButton(centeringContainerActions, room, prepareUpdateRoom)
+            insertDeleteButton(centeringContainerActions, room, deleteRoom)
+            row.insertCell(3).appendChild(centeringContainerActions)
         })
     } else {
         showError(response)

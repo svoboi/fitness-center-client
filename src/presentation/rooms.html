@@ -43,7 +43,7 @@
             <th scope="col">id</th>
             <th scope="col">Name</th>
             <th scope="col">Capacity</th>
-            <th scope="col">Actions</th>
+            <th class="text-center" scope="col">Actions</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -77,21 +77,21 @@
             <div class="modal-body" id="updateModalBody">
                 <form id="updateForm">
                     <div class="mb-3">
-                        <label for="roomIdInModal" class="form-label">ID:</label>
-                        <input type="number" class="form-control" id="roomIdInModal" placeholder="Id of the room"
+                        <label for="roomIdInModal" class="form-label">Id of the room:</label>
+                        <input type="number" class="form-control" id="roomIdInModal" placeholder="id"
                                name="id">
                     </div>
                     <div class="mb-3  my-3">
-                        <label for="roomNameInModal" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="roomNameInModal" placeholder="Name of the room"
+                        <label for="roomNameInModal" class="form-label">Name of the room:</label>
+                        <input type="text" class="form-control" id="roomNameInModal" placeholder="ame"
                                name="name">
                     </div>
                     <div class="mb-3  my-3">
-                        <label for="roomCapacityInModal" class="form-label">Capacity:</label>
+                        <label for="roomCapacityInModal" class="form-label">Capacity of the room:</label>
                         <input type="number" class="form-control" id="roomCapacityInModal"
-                               placeholder="Capacity of the room" name="capacity">
+                               placeholder="Capacity" name="capacity">
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal">Close</button>
                     </div>
