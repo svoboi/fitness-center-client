@@ -225,7 +225,6 @@ function insertShowTrainersButton(centeringContainer, entity, getTrainersForClas
         getTrainersForClass(entity.id)
     });
     showTrainersButton.classList.add('btn', 'btn-secondary');
-    // row.cells[index].appendChild(showTrainersButton);
     centeringContainer.appendChild(showTrainersButton)
 }
 

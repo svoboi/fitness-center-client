@@ -35,7 +35,6 @@ function isUsernameAvailableCallback(username, data, response) {
     }
     if (response.status == 204) {
         document.getElementById("userNameInCreateForm").classList.remove("is-invalid")
-        // document.getElementById("userNameInCreateForm").classList.add("is-valid")
         let user = new FormData(document.getElementById('createForm'));
         let userJSON = JSON.parse(JSON.stringify(user));
         if (userJSON["phoneNumber"] === "") {
