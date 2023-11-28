@@ -8,7 +8,169 @@
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js "></script>
     <script type="module" src="users.js"></script>
 </head>
-<body>
 
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-3">Users</h2>
+    <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#createFormCollapse" role="button" aria-expanded="false">
+        Create User
+    </a>
+    <div class="collapse" id="createFormCollapse">
+        <form class="needs-validation" id="createForm">
+            <div class="mb-3  my-3">
+                <label for="userNameInCreateForm" class="form-label">Username of the user:</label>
+                <input type="text" class="form-control" id="userNameInCreateForm" placeholder="Username"
+                       name="username" required>
+                <div class="invalid-feedback" >
+                    This username is already taken.
+                </div>
+            </div>
+            <div class="mb-3  my-3">
+                <label for="passwordInCreateForm" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="passwordInCreateForm" placeholder="Password"
+                       name="password">
+            </div>
+            <div class="mb-3  my-3">
+                <label for="firstNameInCreateForm" class="form-label">First name of the user:</label>
+                <input type="text" class="form-control" id="firstNameInCreateForm" placeholder="First Name"
+                       name="firstName">
+            </div>
+            <div class="mb-3  my-3">
+                <label for="lastNameInCreateForm" class="form-label">Last name of the user:</label>
+                <input type="text" class="form-control" id="lastNameInCreateForm" placeholder="Last Name"
+                       name="lastName">
+            </div>
+            <div class="mb-3  my-3">
+                <label for="emailInCreateForm" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="emailInCreateForm" placeholder="Email"
+                       name="emailAddress">
+            </div>
+            <div class="mb-3  my-3">
+                <label for="phoneNumberInCreateForm" class="form-label">Phone number:</label>
+                <input type="tel" class="form-control" id="phoneNumberInCreateForm" placeholder="Phone Number"
+                       name="phoneNumber">
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="employeeInCreateForm">
+                    Employee
+                </label>
+                <input class="form-check-input" type="checkbox" id="employeeInCreateForm"
+                       name="employee">
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="customerInCreateForm">
+                    Customer
+                </label>
+                <input class="form-check-input" type="checkbox" id="customerInCreateForm"
+                       name="customer">
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container mt-3">
+    <table class="table table-editor table-striped" id="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Employee</th>
+            <th scope="col">Customer</th>
+            <th class="text-center" scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</div>
+<!--Error Modal -->
+<div class="modal" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="errorModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="updateModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="updateModalBody">
+                <form id="updateForm">
+                    <div class="mb-3">
+                        <label for="userIdInUpdateForm" class="form-label">Id of the user:</label>
+                        <input type="number" class="form-control" id="userIdInUpdateForm" placeholder="id"
+                               name="id">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="userNameInUpdateForm" class="form-label">Username of the user:</label>
+                        <input type="text" class="form-control" id="userNameInUpdateForm" placeholder="Username"
+                               name="username">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="passwordInUpdateForm" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="passwordInUpdateForm" placeholder="Password"
+                               name="password">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="firstNameInUpdateForm" class="form-label">First name of the user:</label>
+                        <input type="text" class="form-control" id="firstNameInUpdateForm" placeholder="First Name"
+                               name="firstName">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="lastNameInUpdateForm" class="form-label">Last name of the user:</label>
+                        <input type="text" class="form-control" id="lastNameInUpdateForm" placeholder="Last Name"
+                               name="lastName">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="emailInUpdateForm" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="emailInUpdateForm" placeholder="Email"
+                               name="emailAddress">
+                    </div>
+                    <div class="mb-3  my-3">
+                        <label for="phoneNumberInUpdateForm" class="form-label">Phone number:</label>
+                        <input type="tel" class="form-control" id="phoneNumberInUpdateForm" placeholder="Phone Number"
+                               name="phoneNumber">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="employeeInUpdateForm">
+                            Employee
+                        </label>
+                        <input class="form-check-input" type="checkbox" id="employeeInUpdateForm"
+                               name="employee">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="customerInUpdateForm">
+                            Customer
+                        </label>
+                        <input class="form-check-input" type="checkbox" id="customerInUpdateForm"
+                               name="customer">
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
