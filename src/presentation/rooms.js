@@ -69,9 +69,9 @@ function prefillUpdateModal(error, data, response) {
     if (response == null) {
         timeOut();
     } else if (response.status == 200) {
-        document.getElementById("roomIdInModal").value = data["id"];
-        document.getElementById("roomNameInModal").value = data["name"];
-        document.getElementById("roomCapacityInModal").value = data["capacity"];
+        document.getElementById("roomIdInUpdateForm").value = data["id"];
+        document.getElementById("roomNameInUpdateForm").value = data["name"];
+        document.getElementById("roomCapacityInUpdateForm").value = data["capacity"];
     } else {
         showError(response)
     }
