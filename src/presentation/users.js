@@ -35,9 +35,11 @@ function isUsernameAvailableCallback(username, data, response) {
     }
     if (response.status == 204) {
         document.getElementById("userNameInCreateForm").classList.remove("is-invalid")
-        let user = new FormData(document.getElementById('createForm'));
+        let userForm = new FormData(document.getElementById('createForm'));
+        let user = Object.fromEntries(userForm);
         let userJSON = JSON.parse(JSON.stringify(user));
-        if (userJSON["phoneNumber"] === "") {
+
+        if (user["phoneNumber"] === "") {
             delete userJSON.phoneNumber;
         }
         userJSON["employee"] = document.getElementById("employeeInCreateForm").checked;
