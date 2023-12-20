@@ -1,24 +1,22 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector('#counter'))
+let navBar = document.createElement("navBar");
+navBar.innerHTML ='\
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
+        <div class="container-fluid">\
+            <a class="navbar-brand" href="./src/presentation/homescreen.html">Fitness center</a>\
+            <ul class="navbar-nav">\
+                <li class="nav-item">\
+                    <a class="nav-link text-light" href="./src/presentation/classes.html">Classes</a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link text-light" href="./src/presentation/users.html">Users</a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link text-light" href="./src/presentation/rooms.html">Rooms</a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link text-light" href="./src/presentation/sportTypes.html">Sports</a>\
+                </li>\
+            </ul>\
+        </div>\
+    </nav>';
+document.body.prepend(navBar);
