@@ -1,6 +1,6 @@
 export function createNavBar(page) {
     let navBar = page.createElement("navBar");
-    navBar.innerHTML ='\
+    navBar.innerHTML = '\
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navBar">\
         <div class="container-fluid">\
             <a class="navbar-brand" href="./homescreen.html">Fitness center</a>\
@@ -66,7 +66,7 @@ export function insertDeleteButton(centeringContainer, entity, deleteFunction) {
     centeringContainer.appendChild(deleteButton);
 }
 
-export function submittedFormToObject(form){
+export function submittedFormToObject(form) {
     form.preventDefault();
     const data = new FormData(form.target);
     return Object.fromEntries(data.entries());

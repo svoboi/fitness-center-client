@@ -1,10 +1,11 @@
 import {RoomApi} from "../index";
 import {
-    timeOut,
-    showError,
+    createNavBar,
     insertDeleteButton,
     insertEditButton,
-    createNavBar, submittedFormToObject
+    showError,
+    submittedFormToObject,
+    timeOut
 } from "./general.js";
 
 createNavBar(document);
@@ -97,7 +98,7 @@ function getRoomsCallback(error, data, response) {
         timeOut()
     } else if (response.status == 200) {
         const tableBody = document.getElementById('tableBody');
-        data.sort((a, b)=>(a.id > b.id))
+        data.sort((a, b) => (a.id > b.id))
         data.forEach(room => {
             const row = tableBody.insertRow();
             row.insertCell(0).textContent = room.id;
