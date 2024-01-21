@@ -1,10 +1,11 @@
 import {UserApi} from "../index";
 import {
-    timeOut,
-    showError,
+    createNavBar,
     insertDeleteButton,
     insertEditButton,
-    createNavBar, submittedFormToObject, debugPrint
+    showError,
+    submittedFormToObject,
+    timeOut
 } from "./general.js";
 
 createNavBar(document);
@@ -134,7 +135,7 @@ function getUsersCallback(error, data, response) {
         timeOut()
     } else if (response.status == 200) {
         const tableBody = document.getElementById('tableBody');
-        data.sort((a, b)=>(a.id > b.id))
+        data.sort((a, b) => (a.id > b.id))
         data.forEach(user => {
             const row = tableBody.insertRow();
             row.insertCell(0).textContent = user.id;

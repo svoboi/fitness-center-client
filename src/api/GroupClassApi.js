@@ -13,23 +13,22 @@
 
 
 import ApiClient from "../ApiClient";
-import AddTrainerRequest from '../model/AddTrainerRequest';
 import GroupClass from '../model/GroupClass';
 
 /**
-* GroupClass service.
-* @module api/GroupClassApi
-* @version 1.0.0
-*/
+ * GroupClass service.
+ * @module api/GroupClassApi
+ * @version 1.0.0
+ */
 export default class GroupClassApi {
 
     /**
-    * Constructs a new GroupClassApi.
-    * @alias module:api/GroupClassApi
-    * @class
-    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-    * default to {@link module:ApiClient#instance} if unspecified.
-    */
+     * Constructs a new GroupClassApi.
+     * @alias module:api/GroupClassApi
+     * @class
+     * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+     * default to {@link module:ApiClient#instance} if unspecified.
+     */
     constructor(apiClient) {
         this.apiClient = apiClient || ApiClient.instance;
     }
@@ -64,12 +63,9 @@ export default class GroupClassApi {
         let pathParams = {
             'classId': classId
         };
-        let queryParams = {
-        };
-        let headerParams = {
-        };
-        let formParams = {
-        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
         let authNames = [];
         let contentTypes = ['application/json'];
@@ -96,31 +92,28 @@ export default class GroupClassApi {
      * @param {module:api/GroupClassApi~deleteGroupClassCallback} callback The callback function, accepting three arguments: error, data, response
      */
     deleteGroupClass(id, callback) {
-      let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteGroupClass");
-      }
+        let postBody = null;
+        // verify the required parameter 'id' is set
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteGroupClass");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
+        let pathParams = {
+            'id': id
+        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = [];
-      let returnType = null;
-      return this.apiClient.callApi(
-        '/groupClasses/{id}', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
+        let authNames = [];
+        let contentTypes = [];
+        let accepts = [];
+        let returnType = null;
+        return this.apiClient.callApi(
+            '/groupClasses/{id}', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, null, callback
+        );
     }
 
     /**
@@ -138,31 +131,28 @@ export default class GroupClassApi {
      * data is of type: {@link module:model/GroupClass}
      */
     getGroupClass(id, callback) {
-      let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getGroupClass");
-      }
+        let postBody = null;
+        // verify the required parameter 'id' is set
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getGroupClass");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
+        let pathParams = {
+            'id': id
+        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = GroupClass;
-      return this.apiClient.callApi(
-        '/groupClasses/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
+        let authNames = [];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = GroupClass;
+        return this.apiClient.callApi(
+            '/groupClasses/{id}', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, null, callback
+        );
     }
 
     /**
@@ -179,26 +169,22 @@ export default class GroupClassApi {
      * data is of type: {@link Array.<module:model/GroupClass>}
      */
     getGroupClasses(callback) {
-      let postBody = null;
+        let postBody = null;
 
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
+        let pathParams = {};
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = [GroupClass];
-      return this.apiClient.callApi(
-        '/groupClasses', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
+        let authNames = [];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = [GroupClass];
+        return this.apiClient.callApi(
+            '/groupClasses', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, null, callback
+        );
     }
 
     /**
@@ -217,35 +203,32 @@ export default class GroupClassApi {
      * data is of type: {@link module:model/GroupClass}
      */
     putGroupClass(groupClass, id, callback) {
-      let postBody = groupClass;
-      // verify the required parameter 'groupClass' is set
-      if (groupClass === undefined || groupClass === null) {
-        throw new Error("Missing the required parameter 'groupClass' when calling putGroupClass");
-      }
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling putGroupClass");
-      }
+        let postBody = groupClass;
+        // verify the required parameter 'groupClass' is set
+        if (groupClass === undefined || groupClass === null) {
+            throw new Error("Missing the required parameter 'groupClass' when calling putGroupClass");
+        }
+        // verify the required parameter 'id' is set
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling putGroupClass");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
+        let pathParams = {
+            'id': id
+        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = GroupClass;
-      return this.apiClient.callApi(
-        '/groupClasses/{id}', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
+        let authNames = [];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = GroupClass;
+        return this.apiClient.callApi(
+            '/groupClasses/{id}', 'PUT',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, null, callback
+        );
     }
 
     /**
@@ -263,31 +246,28 @@ export default class GroupClassApi {
      * data is of type: {@link module:model/GroupClass}
      */
     registerGroupClass(groupClass, callback) {
-      let postBody = groupClass;
-      // verify the required parameter 'groupClass' is set
-      if (groupClass === undefined || groupClass === null) {
-        throw new Error("Missing the required parameter 'groupClass' when calling registerGroupClass");
-      }
+        let postBody = groupClass;
+        // verify the required parameter 'groupClass' is set
+        if (groupClass === undefined || groupClass === null) {
+            throw new Error("Missing the required parameter 'groupClass' when calling registerGroupClass");
+        }
 
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
+        let pathParams = {};
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = GroupClass;
-      return this.apiClient.callApi(
-        '/groupClasses', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
+        let authNames = [];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = GroupClass;
+        return this.apiClient.callApi(
+            '/groupClasses', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, null, callback
+        );
     }
+
     /**
      * Callback function to receive the result of the getTrainers operation.
      * @callback module:api/GroupClassApi~getTrainersCallback
@@ -312,12 +292,9 @@ export default class GroupClassApi {
         let pathParams = {
             'classId': classId
         };
-        let queryParams = {
-        };
-        let headerParams = {
-        };
-        let formParams = {
-        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
         let authNames = [];
         let contentTypes = [];
@@ -358,12 +335,9 @@ export default class GroupClassApi {
         let pathParams = {
             'classId': classId
         };
-        let queryParams = {
-        };
-        let headerParams = {
-        };
-        let formParams = {
-        };
+        let queryParams = {};
+        let headerParams = {};
+        let formParams = {};
 
         let authNames = [];
         let contentTypes = ['application/json'];

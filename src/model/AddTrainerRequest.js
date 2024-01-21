@@ -72,15 +72,10 @@ class AddTrainerRequest {
 }
 
 
-
 /**
  * @member {String} username
  */
 AddTrainerRequest.prototype['username'] = undefined;
-
-
-
-
 
 
 export default AddTrainerRequest;

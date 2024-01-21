@@ -1,13 +1,12 @@
 import {
     createNavBar,
-    debugPrint,
     insertDeleteButton,
     insertEditButton,
     showError,
     submittedFormToObject,
     timeOut
 } from "./general.js";
-import {GroupClass, GroupClassApi} from "../index.js";
+import {GroupClassApi} from "../index.js";
 
 createNavBar(document);
 
@@ -56,7 +55,7 @@ function handleSubmitRegister(event) {
     groupClassApi.registerGroupClass(groupClassJSON, registerClassCallback);
 }
 
-function addTrainersCorrectly (groupClassJSON, trainersIds) {
+function addTrainersCorrectly(groupClassJSON, trainersIds) {
     groupClassJSON.trainers = []
     for (let i = 0; i < globalNumberOfTrainerFields; i++) {
         let nameOfAttribute = "trainer" + i.toString()
@@ -65,7 +64,7 @@ function addTrainersCorrectly (groupClassJSON, trainersIds) {
     }
 }
 
-function addIDToRoom (groupClassJSON) {
+function addIDToRoom(groupClassJSON) {
     if (groupClassJSON["room"].toString().length > 0) {
         let roomNo = groupClassJSON["room"].toString();
         Object.assign(groupClassJSON, {
@@ -78,7 +77,7 @@ function addIDToRoom (groupClassJSON) {
     delete groupClassJSON.room;
 }
 
-function addIDToSportType (groupClassJSON) {
+function addIDToSportType(groupClassJSON) {
     if (groupClassJSON["sportType"].toString().length > 0) {
         let sportTypeNo = groupClassJSON["sportType"].toString();
         Object.assign(groupClassJSON, {
@@ -111,7 +110,7 @@ function getClassesCallback(error, data, response) {
         timeOut()
     } else if (response.status == 200) {
         const tableBody = document.getElementById('tableBody');
-        data.sort((a, b)=>(a.id > b.id))
+        data.sort((a, b) => (a.id > b.id))
         data.forEach(groupClass => {
             const row = tableBody.insertRow();
             row.insertCell(0).textContent = groupClass.id;
@@ -156,14 +155,12 @@ function prefillUpdateModal(error, data, response) {
         document.getElementById("capacityInUpdateForm").value = data["capacity"];
         if (data["room"] != null) {
             document.getElementById("roomInUpdateForm").value = data["room"].id;
-        }
-        else {
+        } else {
             document.getElementById("roomInUpdateForm").value = "";
         }
         if (data["sportType"] != null) {
             document.getElementById("sportTypeInUpdateForm").value = data["sportType"].id;
-        }
-        else {
+        } else {
             document.getElementById("sportTypeInUpdateForm").value = "";
         }
     } else {
@@ -262,6 +259,7 @@ function insertAddTrainersButton(centeringContainer, entity, addTrainersForClass
     // row.cells[index].appendChild(addTrainersButton);
     centeringContainer.appendChild(addTrainersButton)
 }
+
 function addTrainersForClass(id) {
     let addTrainersForClassModal = new bootstrap.Modal(document.getElementById('addTrainersForClassModal'), {});
     document.getElementById("AddTrainersForClassModalTitle").textContent = "Add trainer to class with id " + id;
@@ -283,7 +281,7 @@ function handleSubmitAddTrainerCallback(error, data, response) {
     if (response == null) {
         timeOut();
     } else if (response.status == 200) {
-        return;
+
     } else {
         showError(response)
     }
@@ -321,7 +319,7 @@ function handleSubmitRemoveTrainerCallback(error, data, response) {
     if (response == null) {
         timeOut();
     } else if (response.status == 204) {
-        return;
+
     } else {
         showError(response)
     }
