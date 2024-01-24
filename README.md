@@ -1,6 +1,6 @@
 # How to use this app
 
-After starting up this app (as described in readme here: https://github.com/svoboi/fitness-center-client),
+After starting up this app (as described in readme here: https://github.com/svoboi/fitness-center-server),
 you will be presented with homescreen. On top there's navigation bar, which you can use to get to classes, users, rooms and sports.
 
 Each of these categories has creation form and table for management of already existing entities. You can edit or delete
